@@ -81,20 +81,18 @@ def add_guide():
     if("content" in request.json):
          content = request.json['content']
          print(content)     
-
-    global username     
+    
     username = request.json['username']
-    app.logger.info('test message')
     print(request.json)
-
+    global USERS
     url=request.json['url']
     # url=base64.b64decode(url).decode("utf-8")
     print(url)
     if "youtube" in url:
         msg= "Watching Youtube :" + url
-        app.logger.info(username)
-        app.logger.info(USERS[username])
-        send_text(msg)
+        print(username)
+        print(USERS[username])
+        send_text(msg,USERS[username])
     return ""
 
 @app.route('/login',methods = ['POST'])  
@@ -105,7 +103,7 @@ def login():
           print(uname)
           return "Welcome %s" %uname 
 
-def send_text(msg):
+def send_text(msg,phonenumber):
     print(msg)
     account_sid = 'ACec171a119c791c205c71a012fa72e967' 
     auth_token = '54192993a1830feed6ae781983befc23' 
@@ -114,7 +112,7 @@ def send_text(msg):
     message = client.messages.create(
                               messaging_service_sid='MG16ab7d1555d148d28d80fbff12722672', 
                               body=msg,
-                              to= USERS[username]
+                              to= phonenumber
                               #send_at=send_when.isoformat() + 'Z',
                                 #schedule_type='fixed'
                           )
