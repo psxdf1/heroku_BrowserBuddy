@@ -59,6 +59,7 @@ from twilio.rest import TwilioRestClient
 from datetime import datetime
 from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
+import sys
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -73,10 +74,14 @@ def add_guide():
     #title = request.json['title']
     # if("content" in request.json):
     #      content = request.json['content']
+    app.logger.info('test message')
     print(request.json)
+    sys.stdout.flush()
+
     url=request.json['url']
     url=base64.b64decode(url).decode("utf-8")
     print(url)
+    sys.stdout.flush()
     if "youtube" in url:
         msg= "Watching Youtube :" + url
         send_text(msg)
@@ -88,6 +93,7 @@ def login():
       passwrd=request.form['pass']  
       if uname=="Ryan" and passwrd=="google1":  
           print(uname)
+          sys.stdout.flush()
           return "Welcome %s" %uname 
 
 def send_text(msg):
