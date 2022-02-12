@@ -83,7 +83,7 @@ def add_guide():
          print(content)     
 
     global username     
-    username = request.json['userame']
+    username = request.json['username']
     app.logger.info('test message')
     print(request.json)
 
