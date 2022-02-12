@@ -58,10 +58,11 @@ from twilio.rest import Client
 from twilio.rest import TwilioRestClient
 from datetime import datetime
 from datetime import datetime, timedelta
-
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def index():
