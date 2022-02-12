@@ -50,7 +50,6 @@
 #     # Threaded option to enable multiple instances for multiple user access support
 #     app.run(threaded=True, port=5000)
 
-
 from flask import Flask, request, jsonify
 import base64
 import os
@@ -59,15 +58,21 @@ from twilio.rest import TwilioRestClient
 from datetime import datetime
 from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
+import csv
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+mydict = {}
 
-USERS = {
-    "Sanskruti": "+447879907243",
-    "Ryan": "+447579065474"
-}
+# USERS = {
+#     "Sanskruti": "+447879907243",
+#     "Ryan": "+447579065474"
+# }
+
+# with open('csv_file.csv', mode='r') as inp:
+#     reader = csv.reader(inp)
+#     USERS = {rows[0]:rows[1] for rows in reader}
 
 
 @app.route('/')
@@ -83,6 +88,7 @@ def add_guide():
          print(content)     
     
     username = request.json['username']
+    pn = request.json["number"]
     print(request.json)
     global USERS
     url=request.json['url']
@@ -91,8 +97,9 @@ def add_guide():
     if "youtube" in url:
         msg= "Watching Youtube :" + url
         print(username)
-        print(USERS[username])
-        send_text(msg,USERS[username])
+        # print(USERS[username])
+        print(pn)
+        send_text(msg,pn)
     return ""
 
 @app.route('/login',methods = ['POST'])  
