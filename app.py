@@ -105,6 +105,7 @@ def send_text(msg):
     print(message.sid)
 
 if __name__ == '__main__':
-    app.run(host='https://browsermate.herokuapp.com/')
+    app.run(host='http://0.0.0.0:7214')
+    # app.run(host='https://browsermate.herokuapp.com/')
 
 
