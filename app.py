@@ -87,9 +87,9 @@ def add_guide():
          content = request.json['content']
          print(content)     
     
+    print(request.json)
     username = request.json['username']
     pn = request.json["number"]
-    print(request.json)
     global USERS
     url=request.json['url']
     # url=base64.b64decode(url).decode("utf-8")
