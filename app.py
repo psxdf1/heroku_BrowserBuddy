@@ -70,8 +70,8 @@ def index():
 @app.route('/request', methods=["POST"])
 def add_guide():
     #title = request.json['title']
-    if("content" in request.json):
-         content = request.json['content']
+    # if("content" in request.json):
+    #      content = request.json['content']
     print(request.json)
     url=request.json['url']
     url=base64.b64decode(url).decode("utf-8")
