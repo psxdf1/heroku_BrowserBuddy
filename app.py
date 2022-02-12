@@ -92,6 +92,8 @@ def add_guide():
     print(url)
     if "youtube" in url:
         msg= "Watching Youtube :" + url
+        app.logger.info(username)
+        app.logger.info(USERS[username])
         send_text(msg)
     return ""
 
@@ -105,8 +107,6 @@ def login():
 
 def send_text(msg):
     print(msg)
-    app.logger.info(username)
-    app.logger.info(USERS[username])
     account_sid = 'ACec171a119c791c205c71a012fa72e967' 
     auth_token = '54192993a1830feed6ae781983befc23' 
     client = Client(account_sid, auth_token) 
