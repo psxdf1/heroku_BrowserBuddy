@@ -64,6 +64,12 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+USERS = {
+    "Sanskruti": "+447879907243",
+    "Ryan": "+447579065474"
+}
+
+
 @app.route('/')
 def index():
     app.logger.info('test message')
@@ -75,6 +81,9 @@ def add_guide():
     if("content" in request.json):
          content = request.json['content']
          print(content)     
+
+    global username     
+    username = request.json['userame']
     app.logger.info('test message')
     print(request.json)
 
@@ -103,7 +112,7 @@ def send_text(msg):
     message = client.messages.create(
                               messaging_service_sid='MG16ab7d1555d148d28d80fbff12722672', 
                               body=msg,
-                              to='+447879907243' ,
+                              to= USERS[username]
                               #send_at=send_when.isoformat() + 'Z',
                                 #schedule_type='fixed'
                           )
