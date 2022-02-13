@@ -109,6 +109,8 @@ def login():
       if uname=="Ryan" and passwrd=="google1":  
           print(uname)
           return "Welcome %s" %uname 
+      else:
+          return "Ask Ryan for access"
 
 def send_text(msg,phonenumber):
     print(msg)
