@@ -61,7 +61,7 @@ from flask_cors import CORS, cross_origin
 import csv
 import openai
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def OA(_url):
 
@@ -112,11 +112,10 @@ def add_guide():
 
     # url=base64.b64decode(url).decode("utf-8")
     print(url)
-    if "youtube" in url:
         # msg= "Watching Youtube :" + url
-        print(username)
-        print(pn)
-        send_text(message, pn)
+    print(username)
+    print(pn)
+    send_text(message, pn)
     return ""
 
 @app.route('/login',methods = ['POST'])  
