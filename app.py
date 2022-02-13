@@ -74,7 +74,7 @@ def OA(_url):
     frequency_penalty=0,
     presence_penalty=0
     )
-    return response
+    return str(response)
 
 
 app = Flask(__name__)
