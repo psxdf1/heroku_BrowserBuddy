@@ -74,7 +74,7 @@ def OA(_url):
     frequency_penalty=0,
     presence_penalty=0
     )
-    return str(response)
+    return response.choices[0].text
 
 
 app = Flask(__name__)
@@ -108,7 +108,7 @@ def add_guide():
     pn = request.json["number"]
     url=request.json['url']
     message = request.json["message"]
-    message=message+ " /n Site Summary: " + OA(url)
+    message=message+ " \n Site Summary: " + OA(url)
 
     # url=base64.b64decode(url).decode("utf-8")
     print(url)
