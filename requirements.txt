@@ -7,3 +7,4 @@ MarkupSafe==2.0.1
 Werkzeug==2.0.3
 Twilio==7.6.0
 flask_cors==3.0.10
+openai==0.14.0

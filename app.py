@@ -59,6 +59,23 @@ from datetime import datetime
 from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
 import csv
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def OA(_url):
+
+    response = openai.Completion.create(
+    engine="text-davinci-001",
+    prompt=f" What is the content of the website : {_url}?",
+    temperature=0,
+    max_tokens=65,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
+    )
+    return response
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -82,24 +99,24 @@ def index():
 
 @app.route('/request', methods=["POST"])
 def add_guide():
-    #title = request.json['title']
+    print(request.json)
     if("content" in request.json):
          content = request.json['content']
          print(content)     
     
-    print(request.json)
     username = request.json['username']
     pn = request.json["number"]
-    global USERS
     url=request.json['url']
+    message = request.json["message"]
+    message=message+ " /n Site Summary: " + OA(url)
+
     # url=base64.b64decode(url).decode("utf-8")
     print(url)
     if "youtube" in url:
-        msg= "Watching Youtube :" + url
+        # msg= "Watching Youtube :" + url
         print(username)
-        # print(USERS[username])
         print(pn)
-        send_text(msg,pn)
+        send_text(message, pn)
     return ""
 
 @app.route('/login',methods = ['POST'])  
