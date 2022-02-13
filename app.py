@@ -112,12 +112,13 @@ def login():
 
 def send_text(msg,phonenumber):
     print(msg)
-    account_sid = 'ACec171a119c791c205c71a012fa72e967' 
-    auth_token = '54192993a1830feed6ae781983befc23' 
+    account_sid = os.environ['T_AccountSID']
+    auth_token = os.environ['T_auth_token']
+    
     client = Client(account_sid, auth_token) 
 
     message = client.messages.create(
-                              messaging_service_sid='MG16ab7d1555d148d28d80fbff12722672', 
+                              messaging_service_sid=os.environ['T_messaging_service_sid'], 
                               body=msg,
                               to= phonenumber
                               #send_at=send_when.isoformat() + 'Z',
